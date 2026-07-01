@@ -3,7 +3,19 @@ import type { Core } from '@strapi/strapi';
 const config: Core.Config.Middlewares = [
   'strapi::logger',
   'strapi::errors',
-  'strapi::security',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:', 'https://proxy-event.ckeditor.com'],
+          'script-src': ["'self'", 'https://cdn.ckeditor.com'],
+          'img-src': ["'self'", 'data:', 'blob:', 'https://cdn.ckeditor.com'],
+        },
+      },
+    },
+  },
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
