@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_positions",
+  "info": {
+    "singularName": "job-position",
+    "pluralName": "job-positions",
+    "displayName": "Job Position"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title"
+    },
+    "Department": {
+      "type": "string"
+    },
+    "Location": {
+      "type": "string"
+    },
+    "employmentType": {
+      "type": "enumeration",
+      "enum": [
+        "Full Time",
+        "Part Time",
+        "Contract",
+        "Internship"
+      ]
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "publishedDate": {
+      "type": "date"
+    }
+  }
+}

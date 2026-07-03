@@ -483,6 +483,91 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiJobApplicationJobApplication
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'job_applications';
+  info: {
+    displayName: 'Job Application';
+    pluralName: 'job-applications';
+    singularName: 'job-application';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    applicationStatus: Schema.Attribute.Enumeration<
+      [
+        'New',
+        'Under Review',
+        'Shortlisted',
+        'Interview Scheduled',
+        'Rejected',
+        'Hired',
+      ]
+    >;
+    coverLetter: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    fullName: Schema.Attribute.String;
+    job_positions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::job-position.job-position'
+    >;
+    linkedInURL: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::job-application.job-application'
+    > &
+      Schema.Attribute.Private;
+    phoneNumber: Schema.Attribute.String;
+    portfolioURL: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    Resume: Schema.Attribute.Media<'files'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiJobPositionJobPosition extends Struct.CollectionTypeSchema {
+  collectionName: 'job_positions';
+  info: {
+    displayName: 'Job Position';
+    pluralName: 'job-positions';
+    singularName: 'job-position';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Department: Schema.Attribute.String;
+    description: Schema.Attribute.RichText;
+    employmentType: Schema.Attribute.Enumeration<
+      ['Full Time', 'Part Time', 'Contract', 'Internship']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::job-position.job-position'
+    > &
+      Schema.Attribute.Private;
+    Location: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    publishedDate: Schema.Attribute.Date;
+    Slug: Schema.Attribute.UID<'Title'>;
+    Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiNewsArticleNewsArticle extends Struct.CollectionTypeSchema {
   collectionName: 'news_articles';
   info: {
@@ -521,6 +606,33 @@ export interface ApiNewsArticleNewsArticle extends Struct.CollectionTypeSchema {
     shortDescription: Schema.Attribute.String;
     title: Schema.Attribute.String;
     trending: Schema.Attribute.Boolean;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubcriberSubcriber extends Struct.CollectionTypeSchema {
+  collectionName: 'subcribers';
+  info: {
+    displayName: 'subcriber';
+    pluralName: 'subcribers';
+    singularName: 'subcriber';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subcriber.subcriber'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1039,7 +1151,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::contact.contact': ApiContactContact;
+      'api::job-application.job-application': ApiJobApplicationJobApplication;
+      'api::job-position.job-position': ApiJobPositionJobPosition;
       'api::news-article.news-article': ApiNewsArticleNewsArticle;
+      'api::subcriber.subcriber': ApiSubcriberSubcriber;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
