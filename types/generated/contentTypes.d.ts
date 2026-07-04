@@ -609,12 +609,12 @@ export interface ApiNewsArticleNewsArticle extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiSubcriberSubcriber extends Struct.CollectionTypeSchema {
-  collectionName: 'subcribers';
+export interface ApiSubscrberSubscrber extends Struct.CollectionTypeSchema {
+  collectionName: 'subscrbers';
   info: {
-    displayName: 'subcriber';
-    pluralName: 'subcribers';
-    singularName: 'subcriber';
+    displayName: 'subscrber';
+    pluralName: 'subscrbers';
+    singularName: 'subscrber';
   };
   options: {
     draftAndPublish: true;
@@ -623,10 +623,12 @@ export interface ApiSubcriberSubcriber extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    fullName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::subcriber.subcriber'
+      'api::subscrber.subscrber'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1151,7 +1153,7 @@ declare module '@strapi/strapi' {
       'api::job-application.job-application': ApiJobApplicationJobApplication;
       'api::job-position.job-position': ApiJobPositionJobPosition;
       'api::news-article.news-article': ApiNewsArticleNewsArticle;
-      'api::subcriber.subcriber': ApiSubcriberSubcriber;
+      'api::subscrber.subscrber': ApiSubscrberSubscrber;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
