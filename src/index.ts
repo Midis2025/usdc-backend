@@ -30,7 +30,7 @@ export default {
         try {
           const fullEntity = await strapi.documents('api::job-application.job-application').findOne({
             documentId,
-            populate: ['job_positions', 'Resume'],
+            populate: ['Resume'],
           });
 
           if (fullEntity) {

@@ -15,9 +15,7 @@ interface JobApplicationEntity {
   portfolioURL?: string;
   coverLetter?: string;
   createdAt: string;
-  job_positions?: Array<{
-    Title: string;
-  }>;
+  job_position?: string;
   Resume?: {
     url: string;
   };
@@ -60,10 +58,7 @@ export const sendJobApplicationEmails = async (application: JobApplicationEntity
 
   try {
     // ── Resolve job position title ──
-    const jobPositionTitle =
-      application.job_positions && application.job_positions.length > 0
-        ? application.job_positions[0].Title
-        : 'General Application';
+    const jobPositionTitle = application.job_position || 'General Application';
 
     // ── Format date ──
     const applicationDate = new Date(application.createdAt).toLocaleDateString('en-US', {

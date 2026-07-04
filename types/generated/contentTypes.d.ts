@@ -511,10 +511,7 @@ export interface ApiJobApplicationJobApplication
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
     fullName: Schema.Attribute.String;
-    job_positions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::job-position.job-position'
-    >;
+    job_positions: Schema.Attribute.String;
     linkedInURL: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
