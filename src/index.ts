@@ -1,5 +1,7 @@
 import { sendJobApplicationEmails } from './services/jobApplicationEmail';
+import { syncSubscriberToMailchimp } from './services/mailchimp';
 import type { Core } from '@strapi/strapi';
+
 
 export default {
   /**
@@ -44,5 +46,44 @@ export default {
         }
       },
     });
+
+    // ── Newsletter Subscriber → Mailchimp Sync ──────────────────────────────
+    // Completely separate from the job-application lifecycle above.
+    // Existing Resend code is NOT involved here in any way.
+    //
+    // Trigger: a new subscriber record is created in Strapi (afterCreate).
+    // Action:  sync the subscriber's email to the configured Mailchimp Audience.
+    //          Mailchimp then fires its Welcome Journey automatically.
+    //
+    // Error policy: Mailchimp failures are logged but never surface to the
+    // frontend — the subscriber is already saved in Strapi, which is the
+    // primary success condition.
+    strapi.db.lifecycles.subscribe({
+      models: ['api::subcriber.subcriber'],
+
+      async afterCreate(event) {
+        const { result } = event;
+        const email: string | undefined = result?.email;
+        const fullName: string | undefined = result?.fullName;
+
+        if (!email) {
+          strapi.log.warn('[Mailchimp Lifecycle] afterCreate fired but no email found on subscriber record. Skipping Mailchimp sync.');
+          return;
+        }
+
+        // Fire-and-forget: sync to Mailchimp without blocking the HTTP response.
+        // The subscriber is already saved in Strapi — Mailchimp is best-effort.
+        syncSubscriberToMailchimp(email, fullName).then((res) => {
+          if (res.success) {
+            strapi.log.info(`[Mailchimp Lifecycle] Subscriber synced successfully: ${email}`);
+          } else {
+            strapi.log.warn(`[Mailchimp Lifecycle] Sync failed for ${email}: ${res.message}`);
+          }
+        }).catch((err) => {
+          strapi.log.error('[Mailchimp Lifecycle] Unexpected error during Mailchimp sync:', err);
+        });
+      },
+    });
   },
 };
+

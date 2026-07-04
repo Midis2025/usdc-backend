@@ -96,7 +96,12 @@ export const adminNotificationTemplate = (data: AdminNotificationData): string =
   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #04070f; width: 100%;">
     <tr>
       <td align="center" valign="top" class="outer-wrapper-td" style="padding: 40px 0 60px 0;">
-        <table border="0" cellpadding="0" cellspacing="0" class="email-container" width="600" style="width: 600px; max-width: 600px; margin: 0 auto; background-color: #04070f;">
+        <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+        <tr>
+        <td>
+        <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" class="email-container" width="100%" style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #04070f;">
 
           <!-- HEADER LOGO -->
           <tr>
@@ -234,7 +239,7 @@ export const adminNotificationTemplate = (data: AdminNotificationData): string =
                 <tr>
                   <!-- LinkedIn -->
                   <td align="left" valign="middle" style="padding-right: 12px;">
-                    <a href="https://www.linkedin.com/company/us-data-centers-inc/" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
+                    <a href="https://www.linkedin.com/company/us-data-center/?viewAsMember=true" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
                       <table border="0" cellpadding="0" cellspacing="0" class="social-icon-box" style="border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 6px; width: 36px; height: 36px;">
                         <tr>
                           <td align="center" valign="middle" style="width: 34px; height: 34px; padding: 0;">
@@ -246,7 +251,7 @@ export const adminNotificationTemplate = (data: AdminNotificationData): string =
                   </td>
                   <!-- Twitter/X -->
                   <td align="left" valign="middle" style="padding-right: 12px;">
-                    <a href="https://x.com/" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
+                    <a href="https://x.com/USDataCenters" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
                       <table border="0" cellpadding="0" cellspacing="0" class="social-icon-box" style="border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 6px; width: 36px; height: 36px;">
                         <tr>
                           <td align="center" valign="middle" style="width: 34px; height: 34px; padding: 0;">
@@ -258,7 +263,7 @@ export const adminNotificationTemplate = (data: AdminNotificationData): string =
                   </td>
                   <!-- Facebook -->
                   <td align="left" valign="middle" style="padding-right: 12px;">
-                    <a href="https://www.facebook.com/" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
+                    <a href="https://www.facebook.com/profile.php?id=61574593116858" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
                       <table border="0" cellpadding="0" cellspacing="0" class="social-icon-box" style="border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 6px; width: 36px; height: 36px;">
                         <tr>
                           <td align="center" valign="middle" style="width: 34px; height: 34px; padding: 0;">
@@ -270,7 +275,7 @@ export const adminNotificationTemplate = (data: AdminNotificationData): string =
                   </td>
                   <!-- Instagram -->
                   <td align="left" valign="middle">
-                    <a href="https://www.instagram.com/" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
+                    <a href="https://www.instagram.com/usdatacenter/?hl=en" target="_blank" style="display: block; outline: none; border: none; text-decoration: none;">
                       <table border="0" cellpadding="0" cellspacing="0" class="social-icon-box" style="border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 6px; width: 36px; height: 36px;">
                         <tr>
                           <td align="center" valign="middle" style="width: 34px; height: 34px; padding: 0;">
@@ -324,6 +329,11 @@ export const adminNotificationTemplate = (data: AdminNotificationData): string =
           </tr>
 
         </table>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
       </td>
     </tr>
   </table>
