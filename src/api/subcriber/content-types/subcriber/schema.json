@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "subscrbers",
+  "collectionName": "subcribers",
   "info": {
-    "singularName": "subscrber",
-    "pluralName": "subscrbers",
-    "displayName": "subscrber"
+    "singularName": "subcriber",
+    "pluralName": "subcribers",
+    "displayName": "subcriber"
   },
   "options": {
     "draftAndPublish": true
